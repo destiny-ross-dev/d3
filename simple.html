@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>D3</h2>
+    <div>
+      <svg class="svg2"></svg>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+      let data = [100, 150, 175, 200, 120, 220, 170];
+      let rectWidth = 40;
+      let height = 220;
+      let svg = d3.select(".svg2");
+      let enter = svg
+        .selectAll(".rectangle")
+        .data(data)
+        .enter()
+        .append("rect") // if existing nodes, won't do any of the following functions on them.
+        .attr("x", (d, i) => i * rectWidth)
+        .attr("y", d => height - d)
+        .attr("width", rectWidth)
+        .attr("height", d => d)
+        .attr("fill", function(d) {
+          if (d <= 120) return "red";
+          return "blue";
+        })
+        .attr("stroke", "#fff");
+
+      console.log(enter.nodes());
+    </script>
+  </body>
+</html>
